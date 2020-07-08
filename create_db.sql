@@ -1,4 +1,5 @@
-﻿CREATE DATABASE oc_pizza;
+﻿DROP DATABASE oc_pizza;
+CREATE DATABASE oc_pizza;
 USE oc_pizza;
 CREATE TABLE location (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -17,11 +18,11 @@ CREATE TABLE user (
     CONSTRAINT fk_user_location_id FOREIGN KEY (location_id) REFERENCES location(id)
 );
 CREATE TABLE rank_employe (
-    id INT NOT NULL PRIMARY KEY,
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     rank_emp VARCHAR(100) NOT NULL
 );
 CREATE TABLE restaurant (
-    id INT NOT NULL PRIMARY KEY,
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     location_id INT NOT NULL,
     CONSTRAINT fk_rest_location_id FOREIGN KEY (location_id) REFERENCES location(id)
@@ -47,7 +48,7 @@ CREATE TABLE client (
     CONSTRAINT fk_client_user_id FOREIGN KEY (user_id) REFERENCES user(id)
 );
 CREATE TABLE recipe (
-    id INT NOT NULL PRIMARY KEY,
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     price NUMERIC NOT NULL
 );
@@ -61,8 +62,8 @@ CREATE TABLE note ( /* Liaison table between client table and recipe table */
     CONSTRAINT fk_note_recipe_id FOREIGN KEY (recipe_id) REFERENCES recipe(id)
 );
 CREATE TABLE ingredient (
-    id INT NOT NULL PRIMARY KEY,
-    name VARCHAR(50),
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
     price NUMERIC NOT NULL
 
 );
@@ -83,7 +84,7 @@ CREATE TABLE stock (
 
 );
 CREATE TABLE order_made (
-    id INT NOT NULL PRIMARY KEY,
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     total NUMERIC NOT NULL,
     restaurant_id INT NOT NULL,
     CONSTRAINT fk_order_restaurant_id FOREIGN KEY (restaurant_id) REFERENCES restaurant(id)
@@ -96,13 +97,33 @@ CREATE TABLE cart (
     CONSTRAINT fk_order_id FOREIGN KEY (order_made_id) REFERENCES order_made(id),
     CONSTRAINT fk_recipe_id FOREIGN KEY (recipe_id) REFERENCES recipe(id) 
 );
+CREATE TABLE define_status (
+    id SMALLINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    status VARCHAR(100) NOT NULL
+);
 CREATE TABLE status (
     user_id INT NOT NULL,
     order_id INT NOT NULL,
-    PRIMARY KEY (user_id, order_id),
+    status_id SMALLINT NOT NULL,
+    PRIMARY KEY (user_id, order_id, status_id),
     day DATE NOT NULL,
     hour TIME NOT NULL,
-    state VARCHAR(50) NOT NULL,
     CONSTRAINT fk_status_user_id FOREIGN KEY (user_id) REFERENCES user(id),
-    CONSTRAINT fk_status_order_id FOREIGN KEY (order_id) REFERENCES order_made(id)
+    CONSTRAINT fk_status_order_id FOREIGN KEY (order_id) REFERENCES order_made(id),
+    CONSTRAINT fk_define_status_id FOREIGN KEY (status_id) REFERENCES define_status(id)
 );
+INSERT INTO rank_employe(rank_emp) VALUES
+    ('Director'),
+    ('Manager'),
+    ('Cook'),
+    ('Deliverer'),
+    ('Paymaster');
+INSERT INTO define_status(status) VALUES
+    ('Ordered'),
+    ('Processing'),
+    ('Ready'),
+    ('Delivering'),
+    ('Take away'),
+    ('Delivered'),
+    ('Paid'),
+    ('Cancelled');
