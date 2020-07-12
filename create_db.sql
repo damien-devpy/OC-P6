@@ -1,4 +1,4 @@
-﻿DROP DATABASE oc_pizza;
+DROP DATABASE oc_pizza;
 CREATE DATABASE oc_pizza;
 USE oc_pizza;
 CREATE TABLE location (
@@ -17,13 +17,40 @@ INSERT INTO location VALUES
 ;
 CREATE TABLE user (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    location_id INT NOT NULL,
+    location_id INT,
+    mail VARCHAR(100),
     name VARCHAR(50) NOT NULL,
-    surname VARCHAR(50) NOT NULL,
     phone_number VARCHAR(10) NOT NULL,
-    mail VARCHAR(100) NOT NULL,
+    surname VARCHAR(50) NOT NULL,
     CONSTRAINT fk_user_location_id FOREIGN KEY (location_id) REFERENCES location(id)
 );
+INSERT INTO user VALUES
+    (NULL, NULL, 'arthur.delorme@oc_pizza.com', 'Arthur', '0635119496', 'Delorme'),
+    (NULL, NULL, 'alexandrie.bazin@oc_pizza.com', 'Alexandrie', '0651049233', 'Bazin'),
+    (NULL, NULL, 'lucy.aubry@oc_pizza.com', 'Lucy', '0626652108', 'Aubry'),
+    (NULL, NULL, 'théophile.diaz@oc_pizza.com', 'Théophile', '0682174956', 'Diaz'),
+    (NULL, NULL, 'bernard.dijoux@oc_pizza.com', 'Bernard', '0638735580', 'Dijoux'),
+    (NULL, NULL, 'aimée.gerard@oc_pizza.com', 'Aimée', '0600359345', 'Gerard'),
+    (NULL, NULL, 'luc.fischer@oc_pizza.com', 'Luc', '0611037245', 'Fischer'),
+    (NULL, NULL, 'augustin-frédéric.fontaine@oc_pizza.com', 'Augustin-Frédéric', '0683201009', 'Fontaine'),
+    (NULL, NULL, 'aurélie.seguin@oc_pizza.com', 'Aurélie', '0689276074', 'Seguin'),
+    (NULL, NULL, 'thomas-alain.mary@oc_pizza.com', 'Thomas-Alain', '0639349756', 'Mary'),
+    (NULL, NULL, 'manon.de@oc_pizza.com', 'Manon', '0643633967', 'De'),
+    (NULL, NULL, 'raymond.perrin@oc_pizza.com', 'Raymond', '0619462095', 'Perrin'),
+    (NULL, NULL, 'frédéric.de@oc_pizza.com', 'Frédéric', '0629743436', 'de'),
+    (NULL, NULL, 'antoinette.gautier@oc_pizza.com', 'Antoinette', '0610039579', 'Gautier'),
+    (NULL, NULL, 'constance.du@oc_pizza.com', 'Constance', '0680310217', 'du'),
+    (NULL, NULL, 'eugène-guillaume.lefebvre@oc_pizza.com', 'Eugène-Guillaume', '0680602554', 'Lefebvre'),
+    (NULL, NULL, 'xavier-joseph.denis@oc_pizza.com', 'Xavier-Joseph', '0685527604', 'Denis'),
+    (NULL, NULL, 'timothée.du@oc_pizza.com', 'Timothée', '0689804182', 'du'),
+    (NULL, NULL, 'guillaume-robert.ledoux@oc_pizza.com', 'Guillaume-Robert', '0617819436', 'Ledoux'),
+    (NULL, NULL, 'colette-marcelle.raymond@oc_pizza.com', 'Colette-Marcelle', '0662199222', 'Raymond'),
+    (NULL, NULL, 'jeannine.duval@oc_pizza.com', 'Jeannine', '0668004458', 'Duval'),
+    (NULL, NULL, 'adrien.ribeiro@oc_pizza.com', 'Adrien', '0689616093', 'Ribeiro'),
+    (NULL, NULL, 'lorraine.le@oc_pizza.com', 'Lorraine', '0646633306', 'Le'),
+    (NULL, NULL, 'isaac.munoz@oc_pizza.com', 'Isaac', '0660970514', 'Munoz'),
+    (NULL, NULL, 'honoré.texier@oc_pizza.com', 'Honoré', '0639868532', 'Texier')
+;
 CREATE TABLE rank_employe (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     rank_emp VARCHAR(100) NOT NULL
@@ -48,7 +75,6 @@ INSERT INTO restaurant VALUES
     (NULL, 'Le Joubert', 4),
     (NULL, 'Le Barbe', 5)
 ;
-/* Trigger to LOCATION table through zip_code */
 CREATE TABLE employe (
     user_id INT NOT NULL PRIMARY KEY,
     rank_id INT NOT NULL,
@@ -59,6 +85,33 @@ CREATE TABLE employe (
     CONSTRAINT fk_rank_id FOREIGN KEY (rank_id) REFERENCES rank_employe(id),
     CONSTRAINT fk_restaurant_id FOREIGN KEY (restaurant_id) REFERENCES restaurant(id)
 );
+INSERT INTO employe (
+    (1, 1, 1),
+    (2, 2, 1),
+    (3, 3, 1),
+    (4, 4, 1),
+    (5, 5, 1),
+    (6, 1, 2),
+    (7, 2, 2),
+    (8, 3, 2),
+    (9, 4, 2),
+    (10, 5, 2),
+    (11, 1, 3),
+    (12, 2, 3),
+    (13, 3, 3),
+    (14, 4, 3),
+    (15, 5, 3),
+    (16, 1, 4),
+    (17, 2, 4),
+    (18, 3, 4),
+    (19, 4, 4),
+    (20, 5, 4),
+    (21, 1, 5),
+    (22, 2, 5),
+    (23, 3, 5),
+    (24, 4, 5),
+    (25, 5, 5)
+;
 CREATE TABLE unidentified_client (
     user_id INT NOT NULL PRIMARY KEY,
     CONSTRAINT fk_un_client_user_id FOREIGN KEY (user_id) REFERENCES user(id)
@@ -72,33 +125,24 @@ CREATE TABLE client (
 CREATE TABLE recipe (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
-    price NUMERIC NOT NULL
+    price NUMERIC(4,2) NOT NULL
 );
 INSERT INTO recipe VALUES
-    (NULL, 'Full', 10),
-    (NULL, 'Language', 10),
-    (NULL, 'Thank', 10),
-    (NULL, 'Staff', 10),
-    (NULL, 'Material', 10),
-    (NULL, 'Beautiful', 10),
-    (NULL, 'Message', 10),
-    (NULL, 'Read', 10),
-    (NULL, 'Sit', 10),
-    (NULL, 'Degree', 10)
+    (NULL, 'Full', 10.0),
+    (NULL, 'Language', 10.0),
+    (NULL, 'Thank', 10.0),
+    (NULL, 'Staff', 10.0),
+    (NULL, 'Material', 10.0),
+    (NULL, 'Beautiful', 10.0),
+    (NULL, 'Message', 10.0),
+    (NULL, 'Read', 10.0),
+    (NULL, 'Sit', 10.0),
+    (NULL, 'Degree', 10.0)
 ;
-CREATE TABLE note ( /* Liaison table between client table and recipe table */
-    user_id INT NOT NULL,
-    recipe_id INT NOT NULL,
-    PRIMARY KEY (user_id, recipe_id),
-    note SMALLINT NOT NULL,
-    comment VARCHAR(500) NOT NULL,
-    CONSTRAINT fk_note_user_id FOREIGN KEY (user_id) REFERENCES user(id),
-    CONSTRAINT fk_note_recipe_id FOREIGN KEY (recipe_id) REFERENCES recipe(id)
-);
 CREATE TABLE ingredient (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
-    price NUMERIC(3,2) NOT NULL
+    price NUMERIC(4,2) NOT NULL
 
 );
 INSERT INTO ingredient VALUES
@@ -118,7 +162,7 @@ INSERT INTO ingredient VALUES
     (NULL, 'cheese', 9.71),
     (NULL, 'peas', 5.95)
 ;
-CREATE TABLE composition ( /* Liaison table between ingredient table and recipe table */
+CREATE TABLE composition (
     recipe_id INT NOT NULL,
     ingredient_id INT NOT NULL,
     quantity INT NOT NULL,
@@ -178,6 +222,15 @@ INSERT INTO composition VALUES
     (10, 7, 2),
     (10, 14, 1)
 ;
+CREATE TABLE note (
+    user_id INT NOT NULL,
+    recipe_id INT NOT NULL,
+    PRIMARY KEY (user_id, recipe_id),
+    note SMALLINT NOT NULL,
+    comment VARCHAR(500) NOT NULL,
+    CONSTRAINT fk_note_user_id FOREIGN KEY (user_id) REFERENCES user(id),
+    CONSTRAINT fk_note_recipe_id FOREIGN KEY (recipe_id) REFERENCES recipe(id)
+);
 CREATE TABLE stock (
     restaurant_id INT NOT NULL,
     ingredient_id INT NOT NULL,
@@ -266,14 +319,16 @@ INSERT INTO stock VALUES
 ;
 CREATE TABLE order_made (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    total NUMERIC NOT NULL,
     restaurant_id INT NOT NULL,
+    location_id INT,
     CONSTRAINT fk_order_restaurant_id FOREIGN KEY (restaurant_id) REFERENCES restaurant(id)
+    CONSTRAINT fk_order_location_id FOREIGN KEY (location_id) REFERENCES location(id)
 );
 CREATE TABLE cart (
     order_made_id INT NOT NULL,
     recipe_id INT NOT NULL,
     quantity SMALLINT NOT NULL,
+    price_recipe NUMERIC(4, 2)
     PRIMARY KEY (order_made_id, recipe_id),
     CONSTRAINT fk_order_id FOREIGN KEY (order_made_id) REFERENCES order_made(id),
     CONSTRAINT fk_recipe_id FOREIGN KEY (recipe_id) REFERENCES recipe(id) 
