@@ -13,7 +13,17 @@ INSERT INTO location VALUES
     (NULL, 34, 'rue Charpentier', 75559, 'Pruvost-la-Forêt'),
     (NULL, 23, 'chemin Lebreton', 36276, 'Simon'),
     (NULL, 5, 'rue Victor Joubert', 45826, 'Roussel-sur-Mer'),
-    (NULL, 43, 'avenue Barbe', 86012, 'Dupuis')
+    (NULL, 43, 'avenue Barbe', 86012, 'Dupuis'),
+    (NULL, 40, 'avenue Morvan', 33032, 'Leblanc'),
+    (NULL, 80, 'rue de Jourdan', 33032, 'Leblanc'),
+    (NULL, 72, 'boulevard de Bonnet', 75559, 'Pruvost-la-Forêt'),
+    (NULL, 80, 'avenue Julien', 75559, 'Pruvost-la-Forêt'),
+    (NULL, 8, 'avenue Payet', 6276, 'Simon'),
+    (NULL, 75, 'rue de Guichard', 6276, 'Simon'),
+    (NULL, 63, 'rue Ramos', 45826, 'Roussel-sur-Mer'),
+    (NULL, 13, 'rue Adam', 45826, 'Roussel-sur-Mer'),
+    (NULL, 13, 'rue Blanchet', 86012, 'Dupuis'),
+    (NULL, 69, 'rue Buisson', 86012, 'Dupuis')
 ;
 CREATE TABLE rank_employe (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -80,8 +90,22 @@ CREATE TABLE unidentified_client (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     phone_number VARCHAR(10) NOT NULL,
-    surname VARCHAR(50) NOT NULL
+    surname VARCHAR(50) NOT NULL,
+    location_id INT,
+    CONSTRAINT fk_unident_location_id FOREIGN KEY (location_id) REFERENCES location(id)
 );
+INSERT INTO unidentified_client VALUES
+    (NULL, 'Stéphanie', '0647742918', 'Grondin', 6),
+    (NULL, 'Vincent', '0604309684', 'Leclercq', 8),
+    (NULL, 'Robert', '0686662546', 'Humbert', 10),
+    (NULL, 'Olivier', '0609117035', 'Le', 12),
+    (NULL, 'Margaret', '0648675266', 'Lemoine', 14),
+    (NULL, 'Alex', '0684034969', 'Gimenez', NULL),
+    (NULL, 'Élise', '0693174509', 'Lecornu', NULL),
+    (NULL, 'Noël', '0651468475', 'Clerc', NULL),
+    (NULL, 'Gérard', '0662726026', 'de', NULL),
+    (NULL, 'Aurore', '0632984599', 'Samson', NULL)
+;
 CREATE TABLE client (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     login VARCHAR (50) NOT NULL,
@@ -89,47 +113,60 @@ CREATE TABLE client (
     mail VARCHAR(100),
     name VARCHAR(50) NOT NULL,
     phone_number VARCHAR(10) NOT NULL,
-    surname VARCHAR(50) NOT NULL
+    surname VARCHAR(50) NOT NULL,
+    location_id INT,
+    CONSTRAINT fk_client_location_id FOREIGN KEY (location_id) REFERENCES location(id)
 );
+INSERT INTO client VALUES
+    (NULL, 'élombard', '$pbkdf2-sha256$29000$glAKQQghZAxByPk/R.jdmw$9hTPXF4Kfne6H.50lWsneEA/OtFLLatihG64G3TT9WE', 'édith.lombard@oc_pizza.com', 'Édith', '0653637709', 'Lombard', 7),
+    (NULL, 'gde', '$pbkdf2-sha256$29000$KsV4r7WWMqaUcu7d23uP0Q$Bfjx3ds7RqhHErTPGqkxpwFPzyQb71MHgmU7.IfUuVI', 'gérard.de@oc_pizza.com', 'Gérard', '0638064893', 'de', 9),
+    (NULL, 'pcamus', '$pbkdf2-sha256$29000$bG2tVQphrBVCqNV6790bow$y7GBbOME7fTFmdSGWi964hV4WtAkMnw1Yv1Lco0ipqg', 'pauline.camus@oc_pizza.com', 'Pauline', '0647618480', 'Camus', 11),
+    (NULL, 'gperez', '$pbkdf2-sha256$29000$MeacE.J8j7GWMuZcC8EY4w$ZkBMICcAHy/4Gk9Z4dHA7MzGnZ8KvOD/m2cL9oH2sIg', 'georges.perez@oc_pizza.com', 'Georges', '0692969479', 'Perez', 13),
+    (NULL, 'adelaunay','$pbkdf2-sha256$29000$RKgVYiyFUOodA4DQ.r.31g$FnWC9oMyyw/fZ2Xfengu5P/Ux16xq9zzJHFRkoxdH4Y','aimée.delaunay@oc_pizza.com','Aimée','0680504190','Delaunay', 15),
+    (NULL, 'amathieu', '$pbkdf2-sha256$29000$iJFybk0JYUwJAUCodS4FgA$UnMEbOkMhOJ1pFXqJxVDBp2ezoRs.WPgeOtJPjnIQfA', 'alexandria.mathieu@oc_pizza.com', 'Alexandria', '0624840419', 'Mathieu', NULL),
+    (NULL, 'alucas', '$pbkdf2-sha256$29000$CQGAMIbQ.h8DQGgNAQAAwA$86DOsnf/v2CeGRm0Xg4tEKm5EY3U2JXqlbQuIuBHdkM', 'auguste-benjamin.lucas@oc_pizza.com', 'Auguste-Benjamin', '0634109958', 'Lucas', NULL),
+    (NULL, 'dde', '$pbkdf2-sha256$29000$FML435sTYizFWAuhVOqd8w$EaLZO1GMf/C7K5M2D/UrFuFlfTueu.1ZHk4lKGhdBDk', 'denise.de@oc_pizza.com', 'Denise', '0665004874', 'de', NULL),
+    (NULL, 'dteixeira', '$pbkdf2-sha256$29000$Z0ypdQ5ByNnbG2MMYQxBKA$lM5jwHYLc05cRUj8P18TeqNQOQtROWMKd.Tsb1yws.0', 'dominique.teixeira@oc_pizza.com', 'Dominique', '0650817684', 'Teixeira', NULL),
+    (NULL, 'élanglois', '$pbkdf2-sha256$29000$BSAkJKRUqrXW2lvrvVeqdQ$vGgqz4N.5kMOPVGKcUQPRsXokYHIUmkOphL7VVRvqFc', 'élise.langlois@oc_pizza.com', 'Élise', '0651740799', 'Langlois', NULL)
+;
 CREATE TABLE recipe (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
-    price NUMERIC(4,2) NOT NULL
+    price SMALLINT NOT NULL
 );
 INSERT INTO recipe VALUES
-    (NULL, 'Full', 10.0),
-    (NULL, 'Language', 10.0),
-    (NULL, 'Thank', 10.0),
-    (NULL, 'Staff', 10.0),
-    (NULL, 'Material', 10.0),
-    (NULL, 'Beautiful', 10.0),
-    (NULL, 'Message', 10.0),
-    (NULL, 'Read', 10.0),
-    (NULL, 'Sit', 10.0),
-    (NULL, 'Degree', 10.0)
+    (NULL, 'Full', 9),
+    (NULL, 'Language', 9),
+    (NULL, 'Thank', 10),
+    (NULL, 'Staff', 10),
+    (NULL, 'Material', 11),
+    (NULL, 'Beautiful', 12),
+    (NULL, 'Message', 14),
+    (NULL, 'Read', 14),
+    (NULL, 'Sit', 15),
+    (NULL, 'Degree', 15)
 ;
 CREATE TABLE ingredient (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(50) NOT NULL,
-    price NUMERIC(4,2) NOT NULL
+    name VARCHAR(50) NOT NULL
 
 );
 INSERT INTO ingredient VALUES
-    (NULL, 'pepper', 6.6),
-    (NULL, 'tomato', 7.92),
-    (NULL, 'potatoe', 2.9),
-    (NULL, 'carrots', 0.19),
-    (NULL, 'garlic', 3.53),
-    (NULL, 'mushrooms', 2.4),
-    (NULL, 'onions', 6.81),
-    (NULL, 'spinach', 1.57),
-    (NULL, 'broccoli', 3.87),
-    (NULL, 'beans', 9.22),
-    (NULL, 'celery', 0.14),
-    (NULL, 'cream', 4.47),
-    (NULL, 'pumpkin', 3.8),
-    (NULL, 'cheese', 9.71),
-    (NULL, 'peas', 5.95)
+    (NULL, 'pepper'),
+    (NULL, 'tomato'),
+    (NULL, 'potatoe'),
+    (NULL, 'carrots'),
+    (NULL, 'garlic'),
+    (NULL, 'mushrooms'),
+    (NULL, 'onions'),
+    (NULL, 'spinach'),
+    (NULL, 'broccoli'),
+    (NULL, 'beans'),
+    (NULL, 'celery'),
+    (NULL, 'cream'),
+    (NULL, 'pumpkin'),
+    (NULL, 'cheese'),
+    (NULL, 'peas')
 ;
 CREATE TABLE composition (
     recipe_id INT NOT NULL,
@@ -297,6 +334,28 @@ CREATE TABLE order_made (
     CONSTRAINT fk_order_restaurant_id FOREIGN KEY (restaurant_id) REFERENCES restaurant(id),
     CONSTRAINT fk_order_location_id FOREIGN KEY (location_id) REFERENCES location(id)
 );
+INSERT INTO order_made VALUES
+    (NULL, 1, NULL, 1, 6),
+    (NULL, 2, NULL, 2, 7),
+    (NULL, 3, NULL, 3, 8),
+    (NULL, 4, NULL, 4, 9),
+    (NULL, 5, NULL, 5, 10),
+    (NULL, 6, NULL, 1, NULL),
+    (NULL, 7, NULL, 2, NULL),
+    (NULL, 8, NULL, 3, NULL),
+    (NULL, 9, NULL, 4, NULL),
+    (NULL, 10, NULL, 5, NULL),
+    (NULL, NULL, 1, 1, 11),
+    (NULL, NULL, 2, 2, 12),
+    (NULL, NULL, 3, 3, 13),
+    (NULL, NULL, 4, 4, 14),
+    (NULL, NULL, 5, 5, 15),
+    (NULL, NULL, 6, 1, NULL),
+    (NULL, NULL, 7, 2, NULL),
+    (NULL, NULL, 8, 3, NULL),
+    (NULL, NULL, 9, 4, NULL),
+    (NULL, NULL, 10, 5, NULL)
+;
 CREATE TABLE cart (
     order_made_id INT NOT NULL,
     recipe_id INT NOT NULL,
@@ -306,6 +365,61 @@ CREATE TABLE cart (
     CONSTRAINT fk_order_id FOREIGN KEY (order_made_id) REFERENCES order_made(id),
     CONSTRAINT fk_recipe_id FOREIGN KEY (recipe_id) REFERENCES recipe(id) 
 );
+INSERT INTO cart VALUES
+    (1, 1, 3, 9),
+    (2, 9, 2, 15),
+    (2, 8, 1, 15),
+    (3, 3, 2, 10),
+    (4, 10, 1, 15),
+    (5, 2, 2, 9),
+    (5, 5, 2, 11),
+    (6, 9, 2, 15),
+    (6, 10, 1, 15),
+    (7, 4, 3, 10),
+    (7, 2, 1, 9),
+    (7, 3, 2, 10),
+    (8, 6, 3, 12),
+    (8, 4, 2, 10),
+    (8, 7, 2, 14),
+    (9, 8, 3, 14),
+    (9, 7, 2, 14),
+    (9, 2, 1, 9),
+    (9, 5, 1, 11),
+    (10, 1, 3, 9),
+    (10, 5, 2, 11),
+    (11, 2, 2, 9),
+    (11, 3, 3, 10),
+    (11, 10, 3, 15),
+    (11, 8, 1, 10),
+    (12, 4, 1, 10),
+    (12, 9, 2, 15),
+    (12, 2, 2, 9),
+    (12, 10, 3, 15),
+    (12, 6, 1, 12),
+    (13, 1, 2, 9),
+    (13, 8, 2, 14),
+    (14, 1, 3, 9),
+    (14, 10, 2, 15),
+    (14, 7, 2, 14),
+    (14, 6, 3, 14),
+    (14, 8, 2, 14),
+    (15, 7, 1, 14),
+    (15, 1, 1, 9),
+    (16, 9, 3, 15),
+    (16, 5, 2, 11),
+    (17, 1, 3, 15),
+    (17, 7, 2, 14),
+    (17, 5, 2, 11),
+    (17, 4, 3, 10),
+    (18, 3, 2, 10),
+    (18, 5, 2, 11),
+    (18, 8, 2, 14),
+    (19, 2, 3, 9),
+    (19, 7, 3, 14),
+    (19, 3, 2, 10),
+    (20, 4, 2, 10),
+    (20, 8, 3, 14)
+;
 CREATE TABLE define_status (
     id SMALLINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     status VARCHAR(100) NOT NULL
