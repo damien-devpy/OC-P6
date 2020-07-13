@@ -15,42 +15,6 @@ INSERT INTO location VALUES
     (NULL, 5, 'rue Victor Joubert', 45826, 'Roussel-sur-Mer'),
     (NULL, 43, 'avenue Barbe', 86012, 'Dupuis')
 ;
-CREATE TABLE user (
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    location_id INT,
-    mail VARCHAR(100),
-    name VARCHAR(50) NOT NULL,
-    phone_number VARCHAR(10) NOT NULL,
-    surname VARCHAR(50) NOT NULL,
-    CONSTRAINT fk_user_location_id FOREIGN KEY (location_id) REFERENCES location(id)
-);
-INSERT INTO user VALUES
-    (NULL, NULL, 'arthur.delorme@oc_pizza.com', 'Arthur', '0635119496', 'Delorme'),
-    (NULL, NULL, 'alexandrie.bazin@oc_pizza.com', 'Alexandrie', '0651049233', 'Bazin'),
-    (NULL, NULL, 'lucy.aubry@oc_pizza.com', 'Lucy', '0626652108', 'Aubry'),
-    (NULL, NULL, 'théophile.diaz@oc_pizza.com', 'Théophile', '0682174956', 'Diaz'),
-    (NULL, NULL, 'bernard.dijoux@oc_pizza.com', 'Bernard', '0638735580', 'Dijoux'),
-    (NULL, NULL, 'aimée.gerard@oc_pizza.com', 'Aimée', '0600359345', 'Gerard'),
-    (NULL, NULL, 'luc.fischer@oc_pizza.com', 'Luc', '0611037245', 'Fischer'),
-    (NULL, NULL, 'augustin-frédéric.fontaine@oc_pizza.com', 'Augustin-Frédéric', '0683201009', 'Fontaine'),
-    (NULL, NULL, 'aurélie.seguin@oc_pizza.com', 'Aurélie', '0689276074', 'Seguin'),
-    (NULL, NULL, 'thomas-alain.mary@oc_pizza.com', 'Thomas-Alain', '0639349756', 'Mary'),
-    (NULL, NULL, 'manon.de@oc_pizza.com', 'Manon', '0643633967', 'De'),
-    (NULL, NULL, 'raymond.perrin@oc_pizza.com', 'Raymond', '0619462095', 'Perrin'),
-    (NULL, NULL, 'frédéric.de@oc_pizza.com', 'Frédéric', '0629743436', 'de'),
-    (NULL, NULL, 'antoinette.gautier@oc_pizza.com', 'Antoinette', '0610039579', 'Gautier'),
-    (NULL, NULL, 'constance.du@oc_pizza.com', 'Constance', '0680310217', 'du'),
-    (NULL, NULL, 'eugène-guillaume.lefebvre@oc_pizza.com', 'Eugène-Guillaume', '0680602554', 'Lefebvre'),
-    (NULL, NULL, 'xavier-joseph.denis@oc_pizza.com', 'Xavier-Joseph', '0685527604', 'Denis'),
-    (NULL, NULL, 'timothée.du@oc_pizza.com', 'Timothée', '0689804182', 'du'),
-    (NULL, NULL, 'guillaume-robert.ledoux@oc_pizza.com', 'Guillaume-Robert', '0617819436', 'Ledoux'),
-    (NULL, NULL, 'colette-marcelle.raymond@oc_pizza.com', 'Colette-Marcelle', '0662199222', 'Raymond'),
-    (NULL, NULL, 'jeannine.duval@oc_pizza.com', 'Jeannine', '0668004458', 'Duval'),
-    (NULL, NULL, 'adrien.ribeiro@oc_pizza.com', 'Adrien', '0689616093', 'Ribeiro'),
-    (NULL, NULL, 'lorraine.le@oc_pizza.com', 'Lorraine', '0646633306', 'Le'),
-    (NULL, NULL, 'isaac.munoz@oc_pizza.com', 'Isaac', '0660970514', 'Munoz'),
-    (NULL, NULL, 'honoré.texier@oc_pizza.com', 'Honoré', '0639868532', 'Texier')
-;
 CREATE TABLE rank_employe (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     rank_emp VARCHAR(100) NOT NULL
@@ -76,51 +40,56 @@ INSERT INTO restaurant VALUES
     (NULL, 'Le Barbe', 5)
 ;
 CREATE TABLE employe (
-    user_id INT NOT NULL PRIMARY KEY,
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     rank_id INT NOT NULL,
     restaurant_id INT NOT NULL,
     login VARCHAR (50) NOT NULL,
     password VARCHAR(200) NOT NULL,
-    CONSTRAINT fk__emp_user_id FOREIGN KEY (user_id) REFERENCES user(id),
+    mail VARCHAR(100),
+    name VARCHAR(50) NOT NULL,
+    phone_number VARCHAR(10) NOT NULL,
+    surname VARCHAR(50) NOT NULL,
     CONSTRAINT fk_rank_id FOREIGN KEY (rank_id) REFERENCES rank_employe(id),
     CONSTRAINT fk_restaurant_id FOREIGN KEY (restaurant_id) REFERENCES restaurant(id)
 );
-INSERT INTO employe (
-    (1, 1, 1),
-    (2, 2, 1),
-    (3, 3, 1),
-    (4, 4, 1),
-    (5, 5, 1),
-    (6, 1, 2),
-    (7, 2, 2),
-    (8, 3, 2),
-    (9, 4, 2),
-    (10, 5, 2),
-    (11, 1, 3),
-    (12, 2, 3),
-    (13, 3, 3),
-    (14, 4, 3),
-    (15, 5, 3),
-    (16, 1, 4),
-    (17, 2, 4),
-    (18, 3, 4),
-    (19, 4, 4),
-    (20, 5, 4),
-    (21, 1, 5),
-    (22, 2, 5),
-    (23, 3, 5),
-    (24, 4, 5),
-    (25, 5, 5)
+INSERT INTO employe VALUES
+    (NULL, 1, 1, 'adelorme', '$pbkdf2-sha256$29000$6d17L2WMUWptTem9t5bS.g$hgkQNf67laJOKeHxDg.D4MiqeRyopW5f8SLPmx3UbEU', 'arthur.delorme@oc_pizza.com', 'Arthur', '0635119496', 'Delorme'),
+    (NULL, 1, 1, 'lbazin', '$pbkdf2-sha256$29000$p1TKeQ/BWEvpnbOWsrZW6g$40vwsCNayXkG0gGMWLNZrPhYjAgio2SO2lNPkdnZMuc', 'lola.bazin@oc_pizza.com', 'Lola', '0651049233', 'Bazin'),
+    (NULL, 2, 1, 'laubry', '$pbkdf2-sha256$29000$qZUyxrj3/h8DIASgtBai9A$xpHOQ1yQKSK9lMaAqO5L0B2sE8hgoINw7IkEhXzUck4', 'lucy.aubry@oc_pizza.com', 'Lucy', '0626652108', 'Aubry'),
+    (NULL, 3, 1, 'tdiaz', '$pbkdf2-sha256$29000$jDEmRGhNqbW29h6DcI5Ryg$0ZJRo0/4XmfgNVjCvjd.Khg8O.FbnN8q3ibovk2cH1A', 'théophile.diaz@oc_pizza.com', 'Théophile', '0682174956', 'Diaz'),
+    (NULL, 4, 1, 'bdijoux', '$pbkdf2-sha256$29000$vBeilNKac44xBmDsvffeuw$wb1w27hx4QUWOlqHfrykrjUquGX2j8xO9z86Qof5gag', 'bernard.dijoux@oc_pizza.com', 'Bernard', '0638735580', 'Dijoux'),
+    (NULL, 5, 1, 'agerard', '$pbkdf2-sha256$29000$TAkBQIiR8l7LGcMYIwTg/A$Cc7.huRwkdqp8mhV8cvV9T2RmrEz5UMCGgB6wWeQjds', 'aimée.gerard@oc_pizza.com', 'Aimée', '0600359345', 'Gerard'),
+    (NULL, 2, 2, 'lfischer', '$pbkdf2-sha256$29000$Xuu9F8J479177/3/XwvhnA$R3K5qetK3BGUQx5TjgeEPdFlKEME86bX4yL9jjJivj8', 'luc.fischer@oc_pizza.com', 'Luc', '0611037245', 'Fischer'),
+    (NULL, 3, 2, 'afontaine', '$pbkdf2-sha256$29000$Rch5z5kzhrA2hlBqLQXgPA$OOxBECh5aFhEW3DmTUxHPjKyglSH/uAZaDrMPb9mjfc', 'augustin-frédéric.fontaine@oc_pizza.com', 'Augustin-Frédéric', '0683201009', 'Fontaine'),
+    (NULL, 4, 2, 'aseguin', '$pbkdf2-sha256$29000$WstZK0VICYEQIqTU2tubkw$g7qKXGGYX95OY.eBX3eAXudtNnhks8dPUK0HWMKof50', 'aurélie.seguin@oc_pizza.com', 'Aurélie', '0689276074', 'Seguin'),
+    (NULL,  5, 2, 'tmary', '$pbkdf2-sha256$29000$zhnjvLc2plRqba21VkpJKQ$42bwQje47svRd8xD4z.Y5G7ae179c9CGLb3XnRwVTrc', 'thomas-alain.mary@oc_pizza.com', 'Thomas-Alain', '0639349756', 'Mary'),
+    (NULL,  2, 3, 'mde', '$pbkdf2-sha256$29000$9l4LAYCwds7ZW2stxbgXQg$G0DC/wXiDAecjUgcoPUYiIFS8VhO/lgD6eIkqsDnTuI', 'manon.de@oc_pizza.com', 'Manon', '0643633967', 'De'),
+    (NULL,  3, 3, 'rperrin', '$pbkdf2-sha256$29000$x1jLOYcwJqRUCmGsdQ6BcA$pCVo7MmLYTxxxurzxgyJ8NQmu3BO7LuVlQssbseGZRQ', 'raymond.perrin@oc_pizza.com', 'Raymond', '0619462095', 'Perrin'),
+    (NULL,  4, 3, 'fde', '$pbkdf2-sha256$29000$DsE4R8jZG.Mcw3hPqdU6Bw$U1NAcTZIfAQCWjMPauobY9bp2R7V/gSKAnln.47GNHA', 'frédéric.de@oc_pizza.com', 'Frédéric', '0629743436', 'de'),
+    (NULL,  5, 3, 'agautier', '$pbkdf2-sha256$29000$41zL2ZvTmvO.1zqH8J5T6g$c92mPm0GfLNLDu0Me1bI8jxXrVZ1LA5V5iyqtO.eHWc', 'antoinette.gautier@oc_pizza.com', 'Antoinette', '0610039579', 'Gautier'),
+    (NULL,  2, 4, 'cdu', '$pbkdf2-sha256$29000$OEdoTel9710LYcx5zzlnLA$iY4CoID608tClXa93K291Qj4KJ1kGQt.JFBglJ5vvLg', 'constance.du@oc_pizza.com', 'Constance', '0680310217', 'du'),
+    (NULL,  3, 4, 'elefebvre', '$pbkdf2-sha256$29000$fo8x5lyL0fo/B6C01tr7/w$RkS0wC02Lqy9vOlOfvRPAurtqhUvKdTueQE.OqsSQwc', 'eugène-guillaume.lefebvre@oc_pizza.com', 'Eugène-Guillaume', '0680602554', 'Lefebvre'),
+    (NULL,  4, 4, 'xdenis', '$pbkdf2-sha256$29000$8p5zzjmHEGLsXUupVepdaw$oAsHAE1JO58DtRdeFT5/14zCOZa8C7o85Hdj464EnXo', 'xavier-joseph.denis@oc_pizza.com', 'Xavier-Joseph', '0685527604', 'Denis'),
+    (NULL,  5, 4, 'tdu', '$pbkdf2-sha256$29000$21srhVAqhRDiXMuZ0xpjbA$nP6XTTTy5GyrAejwn7t9gfJ2fB9Ov2k9396FDwuSlug', 'timothée.du@oc_pizza.com', 'Timothée', '0689804182', 'du'),
+    (NULL,  2, 5, 'gledoux', '$pbkdf2-sha256$29000$m9N6DwFgrHUOwdi7t/YeAw$8zJd7dQepnNZ8v6FiSfc1Hg.o7dilEH0W59Hk4z5l2c', 'guillaume-robert.ledoux@oc_pizza.com', 'Guillaume-Robert', '0617819436', 'Ledoux'),
+    (NULL,  3, 5, 'craymond', '$pbkdf2-sha256$29000$l3JuLcX4n7O2tvZeSyklJA$Xw74oBJ9D3Qh.3tv2Vu4aJ5WWrny3ZHm.ddMHur2gQA', 'colette-marcelle.raymond@oc_pizza.com', 'Colette-Marcelle', '0662199222', 'Raymond'),
+    (NULL,  4, 5, 'jduval', '$pbkdf2-sha256$29000$U4oRwvg/B2CMsTYmBCCk9A$o4AwYadDGewUxHSYZDJzLyU3iGlyXTrJxBbGAKg4rCw', 'jeannine.duval@oc_pizza.com', 'Jeannine', '0668004458', 'Duval'),
+    (NULL,  5, 5, 'aribeiro', '$pbkdf2-sha256$29000$IqQUghCiNIZwDkFIKaVUCg$mLoqvY6y5etPhmMInThGj/20o.JGVzdKhwR4cMRKTzs', 'adrien.ribeiro@oc_pizza.com', 'Adrien', '0689616093', 'Ribeiro')
 ;
 CREATE TABLE unidentified_client (
-    user_id INT NOT NULL PRIMARY KEY,
-    CONSTRAINT fk_un_client_user_id FOREIGN KEY (user_id) REFERENCES user(id)
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    phone_number VARCHAR(10) NOT NULL,
+    surname VARCHAR(50) NOT NULL
 );
 CREATE TABLE client (
-    user_id INT NOT NULL PRIMARY KEY,
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     login VARCHAR (50) NOT NULL,
     password VARCHAR(200) NOT NULL,
-    CONSTRAINT fk_client_user_id FOREIGN KEY (user_id) REFERENCES user(id)
+    mail VARCHAR(100),
+    name VARCHAR(50) NOT NULL,
+    phone_number VARCHAR(10) NOT NULL,
+    surname VARCHAR(50) NOT NULL
 );
 CREATE TABLE recipe (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -223,12 +192,12 @@ INSERT INTO composition VALUES
     (10, 14, 1)
 ;
 CREATE TABLE note (
-    user_id INT NOT NULL,
+    client_id INT NOT NULL,
     recipe_id INT NOT NULL,
-    PRIMARY KEY (user_id, recipe_id),
+    PRIMARY KEY (client_id, recipe_id),
     note SMALLINT NOT NULL,
     comment VARCHAR(500) NOT NULL,
-    CONSTRAINT fk_note_user_id FOREIGN KEY (user_id) REFERENCES user(id),
+    CONSTRAINT fk_note_client_id FOREIGN KEY (client_id) REFERENCES client(id),
     CONSTRAINT fk_note_recipe_id FOREIGN KEY (recipe_id) REFERENCES recipe(id)
 );
 CREATE TABLE stock (
@@ -319,16 +288,20 @@ INSERT INTO stock VALUES
 ;
 CREATE TABLE order_made (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    unidentified_client_id INT,
+    client_id INT,
     restaurant_id INT NOT NULL,
     location_id INT,
-    CONSTRAINT fk_order_restaurant_id FOREIGN KEY (restaurant_id) REFERENCES restaurant(id)
+    CONSTRAINT fk_unidentifier_client_id FOREIGN KEY (unidentified_client_id) REFERENCES unidentified_client(id),
+    CONSTRAINT fk_client_id FOREIGN KEY (client_id) REFERENCES client(id),
+    CONSTRAINT fk_order_restaurant_id FOREIGN KEY (restaurant_id) REFERENCES restaurant(id),
     CONSTRAINT fk_order_location_id FOREIGN KEY (location_id) REFERENCES location(id)
 );
 CREATE TABLE cart (
     order_made_id INT NOT NULL,
     recipe_id INT NOT NULL,
     quantity SMALLINT NOT NULL,
-    price_recipe NUMERIC(4, 2)
+    price_recipe NUMERIC(4, 2),
     PRIMARY KEY (order_made_id, recipe_id),
     CONSTRAINT fk_order_id FOREIGN KEY (order_made_id) REFERENCES order_made(id),
     CONSTRAINT fk_recipe_id FOREIGN KEY (recipe_id) REFERENCES recipe(id) 
@@ -338,23 +311,22 @@ CREATE TABLE define_status (
     status VARCHAR(100) NOT NULL
 );
 INSERT INTO define_status VALUES
-    (NULL, 'Ordered'),
     (NULL, 'Processing'),
     (NULL, 'Ready'),
     (NULL, 'Delivering'),
-    (NULL, 'Take away'),
+    (NULL, 'Remit'),
     (NULL, 'Delivered'),
-    (NULL, 'Paid'),
+    (NULL, 'Cash'),
     (NULL, 'Cancelled')
 ;
 CREATE TABLE status (
-    user_id INT NOT NULL,
+    employe_id INT NOT NULL,
     order_id INT NOT NULL,
     status_id SMALLINT NOT NULL,
-    PRIMARY KEY (user_id, order_id, status_id),
+    PRIMARY KEY (employe_id, order_id, status_id),
     day DATE NOT NULL,
     hour TIME NOT NULL,
-    CONSTRAINT fk_status_user_id FOREIGN KEY (user_id) REFERENCES user(id),
+    CONSTRAINT fk_status_employe_id FOREIGN KEY (employe_id) REFERENCES employe(id),
     CONSTRAINT fk_status_order_id FOREIGN KEY (order_id) REFERENCES order_made(id),
     CONSTRAINT fk_define_status_id FOREIGN KEY (status_id) REFERENCES define_status(id)
 );
