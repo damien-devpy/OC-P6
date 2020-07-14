@@ -72,19 +72,19 @@ INSERT INTO employe VALUES
     (NULL, 2, 2, 'lfischer', '$pbkdf2-sha256$29000$Xuu9F8J479177/3/XwvhnA$R3K5qetK3BGUQx5TjgeEPdFlKEME86bX4yL9jjJivj8', 'luc.fischer@oc_pizza.com', 'Luc', '0611037245', 'Fischer'),
     (NULL, 3, 2, 'afontaine', '$pbkdf2-sha256$29000$Rch5z5kzhrA2hlBqLQXgPA$OOxBECh5aFhEW3DmTUxHPjKyglSH/uAZaDrMPb9mjfc', 'augustin-frédéric.fontaine@oc_pizza.com', 'Augustin-Frédéric', '0683201009', 'Fontaine'),
     (NULL, 4, 2, 'aseguin', '$pbkdf2-sha256$29000$WstZK0VICYEQIqTU2tubkw$g7qKXGGYX95OY.eBX3eAXudtNnhks8dPUK0HWMKof50', 'aurélie.seguin@oc_pizza.com', 'Aurélie', '0689276074', 'Seguin'),
-    (NULL,  5, 2, 'tmary', '$pbkdf2-sha256$29000$zhnjvLc2plRqba21VkpJKQ$42bwQje47svRd8xD4z.Y5G7ae179c9CGLb3XnRwVTrc', 'thomas-alain.mary@oc_pizza.com', 'Thomas-Alain', '0639349756', 'Mary'),
-    (NULL,  2, 3, 'mde', '$pbkdf2-sha256$29000$9l4LAYCwds7ZW2stxbgXQg$G0DC/wXiDAecjUgcoPUYiIFS8VhO/lgD6eIkqsDnTuI', 'manon.de@oc_pizza.com', 'Manon', '0643633967', 'De'),
-    (NULL,  3, 3, 'rperrin', '$pbkdf2-sha256$29000$x1jLOYcwJqRUCmGsdQ6BcA$pCVo7MmLYTxxxurzxgyJ8NQmu3BO7LuVlQssbseGZRQ', 'raymond.perrin@oc_pizza.com', 'Raymond', '0619462095', 'Perrin'),
-    (NULL,  4, 3, 'fde', '$pbkdf2-sha256$29000$DsE4R8jZG.Mcw3hPqdU6Bw$U1NAcTZIfAQCWjMPauobY9bp2R7V/gSKAnln.47GNHA', 'frédéric.de@oc_pizza.com', 'Frédéric', '0629743436', 'de'),
-    (NULL,  5, 3, 'agautier', '$pbkdf2-sha256$29000$41zL2ZvTmvO.1zqH8J5T6g$c92mPm0GfLNLDu0Me1bI8jxXrVZ1LA5V5iyqtO.eHWc', 'antoinette.gautier@oc_pizza.com', 'Antoinette', '0610039579', 'Gautier'),
-    (NULL,  2, 4, 'cdu', '$pbkdf2-sha256$29000$OEdoTel9710LYcx5zzlnLA$iY4CoID608tClXa93K291Qj4KJ1kGQt.JFBglJ5vvLg', 'constance.du@oc_pizza.com', 'Constance', '0680310217', 'du'),
-    (NULL,  3, 4, 'elefebvre', '$pbkdf2-sha256$29000$fo8x5lyL0fo/B6C01tr7/w$RkS0wC02Lqy9vOlOfvRPAurtqhUvKdTueQE.OqsSQwc', 'eugène-guillaume.lefebvre@oc_pizza.com', 'Eugène-Guillaume', '0680602554', 'Lefebvre'),
-    (NULL,  4, 4, 'xdenis', '$pbkdf2-sha256$29000$8p5zzjmHEGLsXUupVepdaw$oAsHAE1JO58DtRdeFT5/14zCOZa8C7o85Hdj464EnXo', 'xavier-joseph.denis@oc_pizza.com', 'Xavier-Joseph', '0685527604', 'Denis'),
-    (NULL,  5, 4, 'tdu', '$pbkdf2-sha256$29000$21srhVAqhRDiXMuZ0xpjbA$nP6XTTTy5GyrAejwn7t9gfJ2fB9Ov2k9396FDwuSlug', 'timothée.du@oc_pizza.com', 'Timothée', '0689804182', 'du'),
-    (NULL,  2, 5, 'gledoux', '$pbkdf2-sha256$29000$m9N6DwFgrHUOwdi7t/YeAw$8zJd7dQepnNZ8v6FiSfc1Hg.o7dilEH0W59Hk4z5l2c', 'guillaume-robert.ledoux@oc_pizza.com', 'Guillaume-Robert', '0617819436', 'Ledoux'),
-    (NULL,  3, 5, 'craymond', '$pbkdf2-sha256$29000$l3JuLcX4n7O2tvZeSyklJA$Xw74oBJ9D3Qh.3tv2Vu4aJ5WWrny3ZHm.ddMHur2gQA', 'colette-marcelle.raymond@oc_pizza.com', 'Colette-Marcelle', '0662199222', 'Raymond'),
-    (NULL,  4, 5, 'jduval', '$pbkdf2-sha256$29000$U4oRwvg/B2CMsTYmBCCk9A$o4AwYadDGewUxHSYZDJzLyU3iGlyXTrJxBbGAKg4rCw', 'jeannine.duval@oc_pizza.com', 'Jeannine', '0668004458', 'Duval'),
-    (NULL,  5, 5, 'aribeiro', '$pbkdf2-sha256$29000$IqQUghCiNIZwDkFIKaVUCg$mLoqvY6y5etPhmMInThGj/20o.JGVzdKhwR4cMRKTzs', 'adrien.ribeiro@oc_pizza.com', 'Adrien', '0689616093', 'Ribeiro')
+    (NULL, 5, 2, 'tmary', '$pbkdf2-sha256$29000$zhnjvLc2plRqba21VkpJKQ$42bwQje47svRd8xD4z.Y5G7ae179c9CGLb3XnRwVTrc', 'thomas-alain.mary@oc_pizza.com', 'Thomas-Alain', '0639349756', 'Mary'),
+    (NULL, 2, 3, 'mde', '$pbkdf2-sha256$29000$9l4LAYCwds7ZW2stxbgXQg$G0DC/wXiDAecjUgcoPUYiIFS8VhO/lgD6eIkqsDnTuI', 'manon.de@oc_pizza.com', 'Manon', '0643633967', 'De'),
+    (NULL, 3, 3, 'rperrin', '$pbkdf2-sha256$29000$x1jLOYcwJqRUCmGsdQ6BcA$pCVo7MmLYTxxxurzxgyJ8NQmu3BO7LuVlQssbseGZRQ', 'raymond.perrin@oc_pizza.com', 'Raymond', '0619462095', 'Perrin'),
+    (NULL, 4, 3, 'fde', '$pbkdf2-sha256$29000$DsE4R8jZG.Mcw3hPqdU6Bw$U1NAcTZIfAQCWjMPauobY9bp2R7V/gSKAnln.47GNHA', 'frédéric.de@oc_pizza.com', 'Frédéric', '0629743436', 'de'),
+    (NULL, 5, 3, 'agautier', '$pbkdf2-sha256$29000$41zL2ZvTmvO.1zqH8J5T6g$c92mPm0GfLNLDu0Me1bI8jxXrVZ1LA5V5iyqtO.eHWc', 'antoinette.gautier@oc_pizza.com', 'Antoinette', '0610039579', 'Gautier'),
+    (NULL, 2, 4, 'cdu', '$pbkdf2-sha256$29000$OEdoTel9710LYcx5zzlnLA$iY4CoID608tClXa93K291Qj4KJ1kGQt.JFBglJ5vvLg', 'constance.du@oc_pizza.com', 'Constance', '0680310217', 'du'),
+    (NULL, 3, 4, 'elefebvre', '$pbkdf2-sha256$29000$fo8x5lyL0fo/B6C01tr7/w$RkS0wC02Lqy9vOlOfvRPAurtqhUvKdTueQE.OqsSQwc', 'eugène-guillaume.lefebvre@oc_pizza.com', 'Eugène-Guillaume', '0680602554', 'Lefebvre'),
+    (NULL, 4, 4, 'xdenis', '$pbkdf2-sha256$29000$8p5zzjmHEGLsXUupVepdaw$oAsHAE1JO58DtRdeFT5/14zCOZa8C7o85Hdj464EnXo', 'xavier-joseph.denis@oc_pizza.com', 'Xavier-Joseph', '0685527604', 'Denis'),
+    (NULL, 5, 4, 'tdu', '$pbkdf2-sha256$29000$21srhVAqhRDiXMuZ0xpjbA$nP6XTTTy5GyrAejwn7t9gfJ2fB9Ov2k9396FDwuSlug', 'timothée.du@oc_pizza.com', 'Timothée', '0689804182', 'du'),
+    (NULL, 2, 5, 'gledoux', '$pbkdf2-sha256$29000$m9N6DwFgrHUOwdi7t/YeAw$8zJd7dQepnNZ8v6FiSfc1Hg.o7dilEH0W59Hk4z5l2c', 'guillaume-robert.ledoux@oc_pizza.com', 'Guillaume-Robert', '0617819436', 'Ledoux'),
+    (NULL, 3, 5, 'craymond', '$pbkdf2-sha256$29000$l3JuLcX4n7O2tvZeSyklJA$Xw74oBJ9D3Qh.3tv2Vu4aJ5WWrny3ZHm.ddMHur2gQA', 'colette-marcelle.raymond@oc_pizza.com', 'Colette-Marcelle', '0662199222', 'Raymond'),
+    (NULL, 4, 5, 'jduval', '$pbkdf2-sha256$29000$U4oRwvg/B2CMsTYmBCCk9A$o4AwYadDGewUxHSYZDJzLyU3iGlyXTrJxBbGAKg4rCw', 'jeannine.duval@oc_pizza.com', 'Jeannine', '0668004458', 'Duval'),
+    (NULL, 5, 5, 'aribeiro', '$pbkdf2-sha256$29000$IqQUghCiNIZwDkFIKaVUCg$mLoqvY6y5etPhmMInThGj/20o.JGVzdKhwR4cMRKTzs', 'adrien.ribeiro@oc_pizza.com', 'Adrien', '0689616093', 'Ribeiro')
 ;
 CREATE TABLE unidentified_client (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -132,7 +132,7 @@ INSERT INTO client VALUES
 CREATE TABLE recipe (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
-    price SMALLINT NOT NULL
+    price NUMERIC(4, 2) NOT NULL
 );
 INSERT INTO recipe VALUES
     (NULL, 'Full', 9),
@@ -368,7 +368,7 @@ CREATE TABLE cart (
 INSERT INTO cart VALUES
     (1, 1, 3, 9),
     (2, 9, 2, 15),
-    (2, 8, 1, 15),
+    (2, 8, 1, 14),
     (3, 3, 2, 10),
     (4, 10, 1, 15),
     (5, 2, 2, 9),
@@ -390,7 +390,7 @@ INSERT INTO cart VALUES
     (11, 2, 2, 9),
     (11, 3, 3, 10),
     (11, 10, 3, 15),
-    (11, 8, 1, 10),
+    (11, 8, 1, 14),
     (12, 4, 1, 10),
     (12, 9, 2, 15),
     (12, 2, 2, 9),
@@ -401,13 +401,13 @@ INSERT INTO cart VALUES
     (14, 1, 3, 9),
     (14, 10, 2, 15),
     (14, 7, 2, 14),
-    (14, 6, 3, 14),
+    (14, 6, 3, 12),
     (14, 8, 2, 14),
     (15, 7, 1, 14),
     (15, 1, 1, 9),
     (16, 9, 3, 15),
     (16, 5, 2, 11),
-    (17, 1, 3, 15),
+    (17, 1, 3, 9),
     (17, 7, 2, 14),
     (17, 5, 2, 11),
     (17, 4, 3, 10),
