@@ -323,38 +323,54 @@ INSERT INTO stock VALUES
     (5, 14, 20),
     (5, 15, 20)
 ;
+CREATE TABLE state (
+    id SMALLINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
+);
+INSERT INTO state VALUES
+    (NULL, 'Ordered'),
+    (NULL, 'Processing'),
+    (NULL, 'Ready'),
+    (NULL, 'Delivering'),
+    (NULL, 'Remit'),
+    (NULL, 'Delivered'),
+    (NULL, 'Cash'),
+    (NULL, 'Cancelled')
+;
 CREATE TABLE order_made (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    state_id SMALLINT NOT NULL,
     unidentified_client_id INT,
     client_id INT,
     restaurant_id INT NOT NULL,
     location_id INT,
+    CONSTRAINT fk_state_id FOREIGN KEY (state_id) REFERENCES state(id),
     CONSTRAINT fk_unidentifier_client_id FOREIGN KEY (unidentified_client_id) REFERENCES unidentified_client(id),
     CONSTRAINT fk_client_id FOREIGN KEY (client_id) REFERENCES client(id),
     CONSTRAINT fk_order_restaurant_id FOREIGN KEY (restaurant_id) REFERENCES restaurant(id),
     CONSTRAINT fk_order_location_id FOREIGN KEY (location_id) REFERENCES location(id)
 );
 INSERT INTO order_made VALUES
-    (NULL, 1, NULL, 1, 6),
-    (NULL, 2, NULL, 2, 7),
-    (NULL, 3, NULL, 3, 8),
-    (NULL, 4, NULL, 4, 9),
-    (NULL, 5, NULL, 5, 10),
-    (NULL, 6, NULL, 1, NULL),
-    (NULL, 7, NULL, 2, NULL),
-    (NULL, 8, NULL, 3, NULL),
-    (NULL, 9, NULL, 4, NULL),
-    (NULL, 10, NULL, 5, NULL),
-    (NULL, NULL, 1, 1, 11),
-    (NULL, NULL, 2, 2, 12),
-    (NULL, NULL, 3, 3, 13),
-    (NULL, NULL, 4, 4, 14),
-    (NULL, NULL, 5, 5, 15),
-    (NULL, NULL, 6, 1, NULL),
-    (NULL, NULL, 7, 2, NULL),
-    (NULL, NULL, 8, 3, NULL),
-    (NULL, NULL, 9, 4, NULL),
-    (NULL, NULL, 10, 5, NULL)
+    (NULL, 1, 1, NULL, 1, 6),
+    (NULL, 7, 2, NULL, 2, 7),
+    (NULL, 6, 3, NULL, 3, 8),
+    (NULL, 7, 4, NULL, 4, 9),
+    (NULL, 2, 5, NULL, 5, 10),
+    (NULL, 7, 6, NULL, 1, NULL),
+    (NULL, 5, 7, NULL, 2, NULL),
+    (NULL, 1, 8, NULL, 3, NULL),
+    (NULL, 2, 9, NULL, 4, NULL),
+    (NULL, 3, 10, NULL, 5, NULL),
+    (NULL, 8, NULL, 1, 1, 11),
+    (NULL, 8, NULL, 2, 2, 12),
+    (NULL, 7, NULL, 3, 3, 13),
+    (NULL, 3, NULL, 4, 4, 14),
+    (NULL, 1, NULL, 5, 5, 15),
+    (NULL, 5, NULL, 6, 1, NULL),
+    (NULL, 5, NULL, 7, 2, NULL),
+    (NULL, 7, NULL, 8, 3, NULL),
+    (NULL, 3, NULL, 9, 4, NULL),
+    (NULL, 1, NULL, 10, 5, NULL)
 ;
 CREATE TABLE cart (
     order_made_id INT NOT NULL,
@@ -420,27 +436,3 @@ INSERT INTO cart VALUES
     (20, 4, 2, 10),
     (20, 8, 3, 14)
 ;
-CREATE TABLE define_status (
-    id SMALLINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    status VARCHAR(100) NOT NULL
-);
-INSERT INTO define_status VALUES
-    (NULL, 'Processing'),
-    (NULL, 'Ready'),
-    (NULL, 'Delivering'),
-    (NULL, 'Remit'),
-    (NULL, 'Delivered'),
-    (NULL, 'Cash'),
-    (NULL, 'Cancelled')
-;
-CREATE TABLE status (
-    employe_id INT NOT NULL,
-    order_id INT NOT NULL,
-    status_id SMALLINT NOT NULL,
-    PRIMARY KEY (employe_id, order_id, status_id),
-    day DATE NOT NULL,
-    hour TIME NOT NULL,
-    CONSTRAINT fk_status_employe_id FOREIGN KEY (employe_id) REFERENCES employe(id),
-    CONSTRAINT fk_status_order_id FOREIGN KEY (order_id) REFERENCES order_made(id),
-    CONSTRAINT fk_define_status_id FOREIGN KEY (status_id) REFERENCES define_status(id)
-);
