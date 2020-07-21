@@ -334,7 +334,6 @@ INSERT INTO state VALUES
     (NULL, 'Delivering'),
     (NULL, 'Remit'),
     (NULL, 'Delivered'),
-    (NULL, 'Cash'),
     (NULL, 'Cancelled')
 ;
 CREATE TABLE order_made (
@@ -344,6 +343,7 @@ CREATE TABLE order_made (
     client_id INT,
     restaurant_id INT NOT NULL,
     location_id INT,
+    checkout BOOLEAN NOT NULL,
     CONSTRAINT fk_state_id FOREIGN KEY (state_id) REFERENCES state(id),
     CONSTRAINT fk_unidentifier_client_id FOREIGN KEY (unidentified_client_id) REFERENCES unidentified_client(id),
     CONSTRAINT fk_client_id FOREIGN KEY (client_id) REFERENCES client(id),
@@ -351,26 +351,26 @@ CREATE TABLE order_made (
     CONSTRAINT fk_order_location_id FOREIGN KEY (location_id) REFERENCES location(id)
 );
 INSERT INTO order_made VALUES
-    (NULL, 1, 1, NULL, 1, 6),
-    (NULL, 7, 2, NULL, 2, 7),
-    (NULL, 6, 3, NULL, 3, 8),
-    (NULL, 7, 4, NULL, 4, 9),
-    (NULL, 2, 5, NULL, 5, 10),
-    (NULL, 7, 6, NULL, 1, NULL),
-    (NULL, 5, 7, NULL, 2, NULL),
-    (NULL, 1, 8, NULL, 3, NULL),
-    (NULL, 2, 9, NULL, 4, NULL),
-    (NULL, 3, 10, NULL, 5, NULL),
-    (NULL, 8, NULL, 1, 1, 11),
-    (NULL, 8, NULL, 2, 2, 12),
-    (NULL, 7, NULL, 3, 3, 13),
-    (NULL, 3, NULL, 4, 4, 14),
-    (NULL, 1, NULL, 5, 5, 15),
-    (NULL, 5, NULL, 6, 1, NULL),
-    (NULL, 5, NULL, 7, 2, NULL),
-    (NULL, 7, NULL, 8, 3, NULL),
-    (NULL, 3, NULL, 9, 4, NULL),
-    (NULL, 1, NULL, 10, 5, NULL)
+    (NULL, 1, 1, NULL, 1, 6, 0),
+    (NULL, 7, 2, NULL, 2, 7, 0),
+    (NULL, 6, 3, NULL, 3, 8, 1),
+    (NULL, 7, 4, NULL, 4, 9, 0),
+    (NULL, 2, 5, NULL, 5, 10, 1),
+    (NULL, 7, 6, NULL, 1, NULL, 0),
+    (NULL, 5, 7, NULL, 2, NULL, 1),
+    (NULL, 1, 8, NULL, 3, NULL, 1),
+    (NULL, 2, 9, NULL, 4, NULL, 0),
+    (NULL, 3, 10, NULL, 5, NULL, 1),
+    (NULL, 2, NULL, 1, 1, 11, 1),
+    (NULL, 5, NULL, 2, 2, 12, 1),
+    (NULL, 7, NULL, 3, 3, 13, 0),
+    (NULL, 3, NULL, 4, 4, 14, 0),
+    (NULL, 1, NULL, 5, 5, 15, 1),
+    (NULL, 5, NULL, 6, 1, NULL, 1 ),
+    (NULL, 5, NULL, 7, 2, NULL, 0),
+    (NULL, 7, NULL, 8, 3, NULL, 0),
+    (NULL, 3, NULL, 9, 4, NULL, 1),
+    (NULL, 1, NULL, 10, 5, NULL, 1)
 ;
 CREATE TABLE cart (
     order_made_id INT NOT NULL,

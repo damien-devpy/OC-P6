@@ -154,3 +154,11 @@ ON cart.recipe_id = recipe.id
 INNER JOIN state
 ON order_made.state_id = state.id
 WHERE unidentified_client.name = 'Margaret' AND state.name = 'Processing';
+
+/* Sélectionner toutes les commandes et leurs états qui ont été réglées */
+
+SELECT order_made.id, state.name, order_made.checkout FROM order_made
+INNER JOIN state
+ON order_made.state_id = state.id
+WHERE order_made.checkout IS FALSE
+ORDER BY order_made.id;
