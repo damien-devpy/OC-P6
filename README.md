@@ -10,5 +10,6 @@ My 6th project for OpenClassrooms Python path. It consists designing technicals 
 
 * The __deployement__ models the physical deployement of the system, with all hardware and software needed, such as Gunicorn, load balancer, NGIX, database server, ...
 
-Finally, *create_db.sql* contains an sql script for creating the relational database and all fake data needed.
-*sql_request.sql* contains dozen of sql requests that can be used to challenge the way the database is implemented.
+Finally, __create_db.sql__ contains an sql script for creating the relational database and all fake data needed.
+
+__sql_request.sql__ contains dozen of sql requests that can be used to challenge the way the database is implemented.
