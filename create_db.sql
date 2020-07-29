@@ -18,7 +18,6 @@ CREATE TABLE restaurant (
     location_id INT NOT NULL,
     CONSTRAINT fk_rest_location_id FOREIGN KEY (location_id) REFERENCES location(id)
 );
-
 CREATE TABLE employe (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     rank_id INT NOT NULL,
@@ -32,7 +31,6 @@ CREATE TABLE employe (
     CONSTRAINT fk_rank_id FOREIGN KEY (rank_id) REFERENCES rank_employe(id),
     CONSTRAINT fk_restaurant_id FOREIGN KEY (restaurant_id) REFERENCES restaurant(id)
 );
-
 CREATE TABLE unidentified_client (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
@@ -67,8 +65,8 @@ CREATE TABLE composition (
     ingredient_id INT NOT NULL,
     quantity INT NOT NULL,
     PRIMARY KEY (recipe_id, ingredient_id),
-    CONSTRAINT fk_ingredient_recipe_id FOREIGN KEY (recipe_id) REFERENCES recipe(id),
-    CONSTRAINT fk_recipe_ingredient_id FOREIGN KEY (ingredient_id) REFERENCES ingredient(id)
+    CONSTRAINT fk_ingredient_recipe_id FOREIGN KEY (recipe_id) REFERENCES recipe(id) ON DELETE CASCADE,
+    CONSTRAINT fk_recipe_ingredient_id FOREIGN KEY (ingredient_id) REFERENCES ingredient(id) ON DELETE CASCADE
 );
 CREATE TABLE note (
     client_id INT NOT NULL,
@@ -84,8 +82,8 @@ CREATE TABLE stock (
     ingredient_id INT NOT NULL,
     quantity SMALLINT NOT NULL,
     PRIMARY KEY (restaurant_id, ingredient_id),
-    CONSTRAINT fk_stock_restaurant_id FOREIGN KEY (restaurant_id) REFERENCES restaurant(id),
-    CONSTRAINT fk_stock_ingredient_id FOREIGN KEY (ingredient_id) REFERENCES ingredient(id)
+    CONSTRAINT fk_stock_restaurant_id FOREIGN KEY (restaurant_id) REFERENCES restaurant(id) ON DELETE CASCADE,
+    CONSTRAINT fk_stock_ingredient_id FOREIGN KEY (ingredient_id) REFERENCES ingredient(id) ON DELETE CASCADE
 
 );
 CREATE TABLE state (
@@ -112,6 +110,6 @@ CREATE TABLE cart (
     quantity SMALLINT NOT NULL,
     price_recipe NUMERIC(4, 2),
     PRIMARY KEY (order_made_id, recipe_id),
-    CONSTRAINT fk_order_id FOREIGN KEY (order_made_id) REFERENCES order_made(id),
-    CONSTRAINT fk_recipe_id FOREIGN KEY (recipe_id) REFERENCES recipe(id) 
+    CONSTRAINT fk_order_id FOREIGN KEY (order_made_id) REFERENCES order_made(id) ON DELETE CASCADE,
+    CONSTRAINT fk_recipe_id FOREIGN KEY (recipe_id) REFERENCES recipe(id) ON DELETE CASCADE
 );
